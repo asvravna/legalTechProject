@@ -8,7 +8,6 @@ import SettingsToggleBar from "./SettingsToggleBar";
 export default function Navbar() {
   const pathname = usePathname();
   const { lang, theme } = useSettings();
-
   const isDark = theme === "dark";
 
   const links = [
@@ -25,18 +24,17 @@ export default function Navbar() {
           : "bg-white/90 border-gray-200"
       }`}
     >
-      <nav className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <nav className="max-w-4xl mx-auto px-4 py-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-4">
 
-        {/* Links */}
-        <div className="flex items-center gap-0 flex-1 justify-center">
-            <SettingsToggleBar/>
+        {/* Nav links — wrap on mobile, row on sm+ */}
+        <div className="flex items-center justify-center flex-wrap gap-1">
           {links.map((l) => {
             const active = pathname === l.href;
             return (
               <Link
                 key={l.key}
                 href={l.href}
-                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${
                   active
                     ? isDark
                       ? "bg-gray-700 text-white"
@@ -51,6 +49,9 @@ export default function Navbar() {
             );
           })}
         </div>
+
+    
+
       </nav>
     </header>
   );

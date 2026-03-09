@@ -2,6 +2,8 @@
 
 import { useSettings } from "../SettingsContext";
 import { useState } from "react";
+import PageFooter from "../components/PageFooter"
+
 
 type Section = {
   id: string;
@@ -376,6 +378,7 @@ export default function InfoPage() {
             ))}
           </div>
         </div>
+        <PageFooter />
 
         {/* Footer */}
         <p className={`text-center text-xs font-mono tracking-wider mt-10 ${isDark ? "text-gray-500" : "text-gray-500"}`}>

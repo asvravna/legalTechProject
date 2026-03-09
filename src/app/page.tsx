@@ -84,12 +84,10 @@ export default function HomePage() {
             </div>
           </Link>
         </div>
-
-        {/* Disclaimer (optional) */}
-        {/* <p className="text-xs uppercase tracking-widest text-gray-400">
-          {text.disclaimer[lang]}
-        </p> */}
-        {/* <SettingsToggleBar/> */}
+          {/* Settings — centered on mobile, right-aligned on sm+ */}
+        <div className="flex justify-center sm:justify-end flex-shrink-0">
+          <SettingsToggleBar />
+        </div>
       </div>
     </main>
   );

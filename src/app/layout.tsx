@@ -39,7 +39,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <main className="flex-1 flex flex-col">
               {children}
             </main>
-            <PageFooter /> 
           </div>
         </SettingsProvider>
       </body>

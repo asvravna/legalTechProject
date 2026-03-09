@@ -6,6 +6,7 @@ import { TREE_NO } from "@/data/tree_no";
 import { TREE_EN } from "@/data/tree_en";
 import type { Option, Node, ResultColor } from "@/data/decisionTreeTypes";
 import SettingsToggleBar from "../components/SettingsToggleBar";
+import PageFooter from "../components/PageFooter"
 
 
 // ─── RESULT STYLES ────────────────────────────────────────────────────────────
@@ -145,7 +146,7 @@ export default function Veiviser() {
   }
 
   return (
-    <div className={`min-h-screen px-4 py-10 flex flex-col items-center font-serif ${isDark ? "bg-gray-950" : "bg-gray-100"}`}>
+    <div className={`min-h-screen px-4 py-10 flex flex-col items-center ${isDark ? "bg-gray-950" : "bg-gray-100"}`}>
 
       {/* Header */}
       <div className="w-full max-w-2xl mb-8">
@@ -158,12 +159,12 @@ export default function Veiviser() {
 
         {/* Progress bar — gray track, dark fill */}
         <div className="flex items-center gap-3">
-          <div className={`flex-1 h-1.5 rounded-full overflow-hidden ${isDark ? "bg-gray-800" : "bg-gray-300"}`}>
+          <div className={`flex-1 h-1.5 rounded-full overflow-hidden`}>
             <div
-              className={`h-full transition-all duration-300 ${isDark ? "bg-gray-200" : "bg-gray-800"} ${stepWidthClass}`}
+              className={`h-full transition-all duration-300 ${stepWidthClass}`}
             />
           </div>
-          <span className={`text-xs font-mono ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+          <span className={`text-xs font-mono`}>
             {uiText.stepLabel[lang]} {step}
           </span>
         </div>
@@ -328,12 +329,15 @@ export default function Veiviser() {
           )}
         </div>
       </div>
+      <PageFooter /> 
+
 
 
       {/* Page footer */}
       <p className={`mt-7 text-[11px] text-center font-mono tracking-wide ${isDark ? "text-gray-600" : "text-gray-500"}`}>
         {uiText.footer[lang]}
       </p>
+
       
 
     </div>
