@@ -334,10 +334,7 @@ export default function Veiviser() {
       <p className={`mt-7 text-[11px] text-center font-mono tracking-wide ${isDark ? "text-gray-600" : "text-gray-500"}`}>
         {uiText.footer[lang]}
       </p>
-       {/* Settings */}
-        <div className="flex items-center">
-          <SettingsToggleBar />
-        </div>
+      
 
     </div>
     

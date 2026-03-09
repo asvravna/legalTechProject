@@ -22,7 +22,7 @@ export default function PageFooter() {
 
         {/* Small footer text if you want */}
         <p className="text-[11px] text-slate-500 text-center">
-          Prototype – innholdet kan være ufullstendig eller inneholde feil.
+          {/* Prototype – innholdet kan være ufullstendig eller inneholde feil. */}
         </p>
       </div>
     </footer>

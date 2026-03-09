@@ -37,6 +37,11 @@ const feedbackText = {
     no: "Noe gikk galt. Prøv igjen senere.",
     en: "Something went wrong. Please try again later.",
   },
+  footer: {
+    no: "Prototype – innholdet kan være ufullstendig eller inneholde feil.",
+    en:"This is a prototype for internal testing. Content may be incomplete or contain errors. Use the feedback form below to report issues."
+  
+  }
 };
 
 export default function FeedbackFormInline() {
@@ -103,7 +108,7 @@ export default function FeedbackFormInline() {
           <button
             type="submit"
             disabled={status === "loading" || !message.trim()}
-            className="px-4 py-2 rounded-md bg-black text-white text-xs font-semibold tracking-[0.12em] uppercase disabled:bg-slate-400 disabled:text-slate-100"
+            className="px-4 py-2 rounded-md bg-black text-black text-xs font-semibold tracking-[0.12em] uppercase disabled:bg-slate-400 disabled:text-slate-100"
           >
             {status === "loading"
               ? feedbackText.buttonSending[l]
@@ -121,6 +126,12 @@ export default function FeedbackFormInline() {
           </p>
         )}
       </form>
+       <h3 className="text-sm text-slate-900 mb-1 py-8">
+             {feedbackText.footer[l]}
+
+    </h3>
+
     </div>
+   
   );
 }
