@@ -9,7 +9,6 @@ import PageFooter from "./components/PageFooter";
 
 
 import { SettingsProvider } from "./SettingsContext";
-import FeedbackSlider from "./components/FeedbackFormInline";
 
 
 

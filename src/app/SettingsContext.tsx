@@ -14,7 +14,7 @@ type Theme = "light" | "dark";
 type SettingsContextValue = {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  theme: Theme;
+  theme: Theme;       
   setTheme: (theme: Theme) => void;
 };
 
@@ -24,16 +24,17 @@ const SettingsContext = createContext<SettingsContextValue | undefined>(
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("no");
-  const [theme, setThemeState] = useState<Theme>("dark");
 
-  // Optional: persist to localStorage
+  // Theme is fixed to light
+  const theme: Theme = "light";
+
+  // Persist language only
   useEffect(() => {
     if (typeof window === "undefined") return;
     const savedLang = window.localStorage.getItem("lang") as Lang | null;
-    const savedTheme = window.localStorage.getItem("theme") as Theme | null;
-    if (savedLang === "no" || savedLang === "en") setLangState(savedLang);
-    if (savedTheme === "light" || savedTheme === "dark")
-      setThemeState(savedTheme);
+    if (savedLang === "no" || savedLang === "en") {
+      setLangState(savedLang);
+    }
   }, []);
 
   useEffect(() => {
@@ -41,16 +42,20 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem("lang", lang);
   }, [lang]);
 
+  // Always enforce light appearance on <html>
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    window.localStorage.setItem("theme", theme);
+    if (typeof document === "undefined") return;
     const root = document.documentElement;
-    root.style.backgroundColor = theme === "dark" ? "#020617" : "#f9fafb";
-    root.style.colorScheme = theme === "dark" ? "dark" : "light";
-  }, [theme]);
+    root.style.backgroundColor = "#f9fafb"; // same as your light value
+    root.style.colorScheme = "light";
+  }, []);
 
   const setLang = (l: Lang) => setLangState(l);
-  const setTheme = (t: Theme) => setThemeState(t);
+
+  // Ignore attempts to set "dark"; keep theme as "light"
+  const setTheme = (_t: Theme) => {
+    // no-op on purpose
+  };
 
   return (
     <SettingsContext.Provider value={{ lang, setLang, theme, setTheme }}>
