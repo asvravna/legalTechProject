@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+, "src/app/veileder", "src/app/veiviser"  ],
   "exclude": ["node_modules"]
 }
