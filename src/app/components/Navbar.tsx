@@ -28,7 +28,8 @@ export default function Navbar() {
       <nav className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
 
         {/* Links */}
-        <div className="flex items-center gap-1 flex-1 justify-center">
+        <div className="flex items-center gap-0 flex-1 justify-center">
+            <SettingsToggleBar/>
           {links.map((l) => {
             const active = pathname === l.href;
             return (
@@ -50,12 +51,6 @@ export default function Navbar() {
             );
           })}
         </div>
-
-        {/* Settings */}
-        <div className="flex items-center">
-          <SettingsToggleBar />
-        </div>
-
       </nav>
     </header>
   );

@@ -5,9 +5,11 @@ import "./globals.css";
 import { ReactNode } from "react";
 
 import Navbar from "./components/Navbar";
+import PageFooter from "./components/PageFooter";
+
 
 import { SettingsProvider } from "./SettingsContext";
-import SettingsToggleBar from "./components/SettingsToggleBar";
+import FeedbackSlider from "./components/FeedbackFormInline";
 
 
 
@@ -33,8 +35,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="no">
       <body>
         <SettingsProvider>
-           <Navbar />
-          {children}
+          <Navbar/>
+          <div className="min-h-screen flex flex-col">
+            <main className="flex-1 flex flex-col">
+              {children}
+            </main>
+            <PageFooter /> 
+          </div>
         </SettingsProvider>
       </body>
     </html>

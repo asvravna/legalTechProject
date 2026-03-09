@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useSettings } from "../app/SettingsContext";
+import SettingsToggleBar from "./components/SettingsToggleBar";
+
 
 const text = {
   title: {
@@ -87,6 +89,7 @@ export default function HomePage() {
         {/* <p className="text-xs uppercase tracking-widest text-gray-400">
           {text.disclaimer[lang]}
         </p> */}
+        {/* <SettingsToggleBar/> */}
       </div>
     </main>
   );

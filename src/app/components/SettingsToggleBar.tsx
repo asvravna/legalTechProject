@@ -3,85 +3,57 @@
 import { useSettings } from "../SettingsContext";
 
 export default function SettingsToggleBar() {
-  const { lang, setLang, theme, setTheme } = useSettings();
+  const { lang, setLang, theme } = useSettings();
 
-  const bg =
-    theme === "dark"
-      ? "rgba(15,23,42,0.8)"
-      : "rgba(255,255,255,0.9)";
-  const border =
-    theme === "dark" ? "rgba(148,163,184,0.4)" : "rgba(148,163,184,0.6)";
-  const text = theme === "dark" ? "#e5e7eb" : "#111827";
+  const isDark = theme === "dark";
+
+  const containerClasses = [
+    "z-40 flex items-center gap-2 rounded-full border px-2 py-1 backdrop-blur",
+    isDark
+      ? "bg-slate-900/80 border-slate-500/60 text-slate-100"
+      : "bg-white/90 border-slate-400/60 text-slate-900",
+  ].join(" ");
+
+  const dividerClasses = isDark ? "bg-slate-500/60" : "bg-slate-400/60";
+
+  const baseButtonClasses =
+    "px-2 py-0.5 rounded-full text-[11px] font-mono cursor-pointer border border-transparent transition-colors";
+
+  const activeLight = "bg-emerald-600 text-slate-50";
+  const activeDark = "bg-emerald-500 text-slate-900";
+
+  const inactiveLight = "bg-transparent text-slate-900 hover:bg-slate-100";
+  const inactiveDark = "bg-transparent text-slate-100 hover:bg-slate-800";
+
+  const activeClasses = isDark ? activeDark : activeLight;
+  const inactiveClasses = isDark ? inactiveDark : inactiveLight;
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 12,
-        right: 12,
-        zIndex: 40,
-        background: bg,
-        border: `1px solid ${border}`,
-        borderRadius: 999,
-        padding: "6px 10px",
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        backdropFilter: "blur(10px)",
-      }}
-    >
+    <div className={containerClasses}>
       {/* Language */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 4,
-          fontSize: 11,
-          color: text,
-          fontFamily: "monospace",
-        }}
-      >
-        {/* <span>Lang</span> */}
+      <div className="flex items-center gap-1">
         <button
           onClick={() => setLang("no")}
-          style={{
-            padding: "3px 8px",
-            borderRadius: 999,
-            border: "none",
-            fontSize: 11,
-            cursor: "pointer",
-            background: lang === "no" ? "#16a34a" : "transparent",
-            color: lang === "no" ? "#f9fafb" : text,
-          }}
+          className={`${baseButtonClasses} ${
+            lang === "no" ? activeClasses : inactiveClasses
+          }`}
+          type="button"
         >
           NO
         </button>
-        <button
+
+      {/* Divider */}
+      <div className={`h-[18px] w-px ${dividerClasses}`} />
+    </div>
+           <button
           onClick={() => setLang("en")}
-          style={{
-            padding: "3px 8px",
-            borderRadius: 999,
-            border: "none",
-            fontSize: 11,
-            cursor: "pointer",
-            background: lang === "en" ? "#16a34a" : "transparent",
-            color: lang === "en" ? "#f9fafb" : text,
-          }}
+          className={`${baseButtonClasses} ${
+            lang === "en" ? activeClasses : inactiveClasses
+          }`}
+          type="button"
         >
           EN
         </button>
       </div>
-
-      {/* Divider */}
-      <div
-        style={{
-          width: 1,
-          height: 18,
-          background: border,
-        }}
-      />
-
-     
-    </div>
   );
 }
